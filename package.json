@@ -1,0 +1,23 @@
+{
+  "name": "reactcourse",
+  "version": "1.0.0",
+  "description": "followup with reactjs course",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava 'app/**/*.test.js' --verbose --require ./other/setup-ava-tests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/pokiujf/reactcourse.git"
+  },
+  "keywords": [
+    "react",
+    "course"
+  ],
+  "author": "pokiujf",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pokiujf/reactcourse/issues"
+  },
+  "homepage": "https://github.com/pokiujf/reactcourse#readme"
+}
