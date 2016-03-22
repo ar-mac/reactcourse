@@ -6,7 +6,8 @@
   "scripts": {
     "test": "ava 'app/**/*.test.js' --verbose --require ./other/setup-ava-tests.js",
     "build": "webpack",
-    "build:production": "webpack -p"
+    "build:production": "webpack -p",
+    "build:watch": "webpack -w"
   },
   "repository": {
     "type": "git",
