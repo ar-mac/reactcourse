@@ -1,2 +1,2 @@
-var app = document.getElementById('app');
-app.innerHTML = 'hello'
+import HelloWorld from './components/HelloWorld.jsx';
+import Avatar from './components/Avatar.jsx';
