@@ -7,7 +7,8 @@
     "test": "ava 'app/**/*.test.js' --verbose --require ./other/setup-ava-tests.js",
     "build": "webpack",
     "build:production": "webpack -p",
-    "build:watch": "webpack -w"
+    "build:watch": "webpack -w",
+    "server:start": "webpack-dev-server --port 3000"
   },
   "repository": {
     "type": "git",
@@ -25,7 +26,8 @@
   "homepage": "https://github.com/pokiujf/reactcourse#readme",
   "dependencies": {
     "react": "^0.14.7",
-    "react-dom": "^0.14.7"
+    "react-dom": "^0.14.7",
+    "webpack": "^1.12.14"
   },
   "devDependencies": {
     "ava": "^0.13.0",
