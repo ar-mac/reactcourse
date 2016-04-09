@@ -1,2 +1,5 @@
-import HelloWorld from './components/HelloWorld.jsx';
-import Avatar from './components/Avatar.jsx';
+import React from 'react'
+import ReactDom from 'react-dom'
+import routes from './config/routes'
+
+ReactDom.render(routes, document.getElementById('app'))
