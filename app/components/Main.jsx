@@ -1,25 +1,13 @@
 import React, { PropTypes } from 'react';
-import _ from 'lodash';
+import { Link } from 'react-router'
 
 export default class Main extends React.Component {
-  static PropTypes = {
-
-  };
-
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-
-    };
-    _.bindAll(this, [
-
-    ])
-  }
-
   render() {
     return (
       <div className="main-container">
+        <Link to="/">
+          <button className="btn btn-block btn-success">Back to home</button>
+        </Link>
         {this.props.children}
       </div>
     )

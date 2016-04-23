@@ -1,23 +1,7 @@
 import React, { PropTypes } from 'react'
-import _ from 'lodash'
 import { Link } from 'react-router'
 
 export default class Home extends React.Component {
-  static PropTypes = {
-    
-  }
-
-  constructor(props, context) {
-    super(props, context)
-
-    this.state = {
-      
-    }
-    _.bindAll(this, [
-      
-    ])
-  }
-
   render() {
     return (
       <div className="jumbotron col-sm-12 text-center">
