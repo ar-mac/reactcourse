@@ -10,8 +10,20 @@ export default routes = (
   <Router history={hashHistory}>
     <Route path="/" component={Main}>
       <IndexRoute component={Home}/>
-      <Route path="playerOne" header='One' component={PromptContainer}/>
-      <Route path="playerTwo/:playerOne" header='Two' component={PromptContainer}/>
+      <Route
+        path="playerOne"
+        header='Player one'
+        component={PromptContainer}
+      />
+      <Route
+        path="playerTwo/:playerOne"
+        header='Player two'
+        component={PromptContainer}
+      />
+      <Route
+        path="battle"
+        component={PromptContainer}
+      />
     </Route>
   </Router>
 )

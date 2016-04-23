@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
 export default class PromptContainter extends React.Component {
-  static PropTypes = {
-
+  static contextTypes = {
+    router: PropTypes.object.isRequired
   };
 
   constructor(props, context) {
@@ -18,19 +18,28 @@ export default class PromptContainter extends React.Component {
     ])
   }
 
+  componentWillReceiveProps() {
+    this.setState({userName: ''})
+  }
+
   updateUser() {
     this.setState({userName: userNameInput.value})
   }
 
   submitUser(e) {
     e.preventDefault()
-    let userName = this.state.userName
-    this.setState({userName: ''})
-
-    if (this.props.routeParams) {
-    //  render battle
+    if (this.props.route.path == 'playerOne') {
+      this.context.router.push({
+        pathname: `/playerTwo/${this.state.userName}`
+      })
     } else {
-    // render player two
+      this.context.router.push({
+        pathname: '/battle',
+        query: {
+          playerOne: this.props.routeParams.playerOne,
+          playerTwo: this.state.userName
+        }
+      })
     }
   }
 
@@ -46,7 +55,7 @@ export default class PromptContainter extends React.Component {
                 placeholder='Github Username'
                 type='text'
                 onChange={this.updateUser}
-                value={this.state.username}
+                value={this.state.userName}
                 id="userNameInput"
               />
             </div>
