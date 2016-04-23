@@ -8,7 +8,7 @@
     "build": "webpack",
     "build:production": "webpack -p",
     "build:watch": "webpack -w",
-    "server:start": "webpack-dev-server --port 3000"
+    "server": "webpack-dev-server --port 3000"
   },
   "repository": {
     "type": "git",
