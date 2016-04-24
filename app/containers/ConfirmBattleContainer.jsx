@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
-import GithubHelpers from '../utils/GithubHelpers'
+import GithubHelpers from '../utils/GithubHelpers';
+import PlayersInfoTable from './PlayersInfoTable.jsx';
+import LoadingPrompt from './LoadingPrompt.jsx';
 
 export default class ConfirmBattleContainer extends React.Component {
   static ContextTypes = {
@@ -11,7 +13,6 @@ export default class ConfirmBattleContainer extends React.Component {
     super(props, context);
 
     this.state = {
-      isLoading: true,
       playersInfo: []
     };
   }
@@ -22,7 +23,6 @@ export default class ConfirmBattleContainer extends React.Component {
       .getUsersInfo()
       .then(playersInfo => {
         this.setState({
-          isLoading: false,
           playersInfo: playersInfo
         })
       })
@@ -31,9 +31,11 @@ export default class ConfirmBattleContainer extends React.Component {
   render() {
     return (
       <div>
-        {this.state.isLoading
-          ? 'LOADING'
-          : <pre>{JSON.stringify(this.state.playersInfo, null, ' ')}</pre> }
+        {
+          this.state.playersInfo.length
+            ? <PlayersInfoTable playersInfo={this.state.playersInfo}/>
+            : <LoadingPrompt />
+          }
       </div>
     )
   }
