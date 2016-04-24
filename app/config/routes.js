@@ -4,6 +4,7 @@ import ReactRouter, { Router, Route, IndexRoute, hashHistory } from 'react-route
 import Main from '../components/Main.jsx'
 import Home from '../components/Home.jsx'
 import PromptContainer from '../containers/PromptContainer.jsx'
+import ConfirmBattleContainer from '../containers/ConfirmBattleContainer.jsx'
 let routes
 
 export default routes = (
@@ -22,7 +23,7 @@ export default routes = (
       />
       <Route
         path="battle"
-        component={PromptContainer}
+        component={ConfirmBattleContainer}
       />
     </Route>
   </Router>
