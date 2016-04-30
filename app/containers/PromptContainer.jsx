@@ -14,7 +14,9 @@ export default class PromptContainter extends React.Component {
     };
     _.bindAll(this, [
       'updateUser',
-      'submitUser'
+      'submitUser',
+      'playerTwoRoute',
+      'battleRoute'
     ])
   }
 
@@ -28,19 +30,26 @@ export default class PromptContainter extends React.Component {
 
   submitUser(e) {
     e.preventDefault()
-    if (this.props.route.path == 'playerOne') {
-      this.context.router.push({
-        pathname: `/playerTwo/${this.state.userName}`
-      })
-    } else {
-      this.context.router.push({
-        pathname: '/battle',
-        query: {
-          playerOne: this.props.routeParams.playerOne,
-          playerTwo: this.state.userName
-        }
-      })
-    }
+    const playerOneRoute = this.props.route.path == 'playerOne';
+    const route = playerOneRoute ? this.playerTwoRoute() : this.battleRoute()
+
+    this.context.router.push(route)
+  }
+
+  playerTwoRoute() {
+    return ({
+      pathname: `/playerTwo/${this.state.userName}`
+    })
+  }
+
+  battleRoute() {
+    return ({
+      pathname: '/battle',
+      query: {
+        playerOne: this.props.routeParams.playerOne,
+        playerTwo: this.state.userName
+      }
+    })
   }
 
   render() {
