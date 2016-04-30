@@ -5,7 +5,6 @@ import GithubHelpers from '../utils/HelpersForGithub';
 import UserDetails from '../components/UserDetails.jsx';
 import Users from '../components/UserDetails.jsx';
 import LoadingPrompt from '../components/LoadingPrompt.jsx';
-import ButtonForRestart from '../components/ButtonForRestart.jsx';
 
 export default class ResultsContainer extends React.Component {
   static context
@@ -59,7 +58,6 @@ export default class ResultsContainer extends React.Component {
     )
   }
 
-
   render() {
     return (
       <div>
@@ -67,4 +65,14 @@ export default class ResultsContainer extends React.Component {
       </div>
     )
   }
+}
+
+let ButtonForRestart = () => {
+  return(
+    <div className="col-sm-12">
+      <Link to="/playerOne">
+        <button className="btn btn-lg btn-primary">Start another battle</button>
+      </Link>
+    </div>
+  )
 }
