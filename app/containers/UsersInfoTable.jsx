@@ -4,28 +4,31 @@ import _ from 'lodash';
 import UserDetails from './UserDetails.jsx';
 
 export default class PlayersInfoTable extends React.Component {
-  static PropTypes = {
+  static contextTypes = {
+    router: PropTypes.object.isRequired
+  };
 
+  static PropTypes = {
+    usersInfo: PropTypes.array.isRequired
   };
 
   constructor(props, context) {
     super(props, context);
 
-    this.state = {
-
-    };
     _.bindAll(this, [
       'initiateBattle'
     ])
   }
 
   initiateBattle() {
-    this.context.router.push({
+    const resultsPath = {
       pathname: '/results',
       state: {
-        playersInfo: this.state.playersInfo
+        usersInfo: this.props.usersInfo
       }
-    })
+    };
+
+    this.context.router.push(resultsPath)
   }
 
   render() {
@@ -35,12 +38,12 @@ export default class PlayersInfoTable extends React.Component {
         <div className='col-sm-8 col-sm-offset-2'>
           <UserDetails
             key="player_one_details"
-            info={this.props.playersInfo[0]}
+            info={this.props.usersInfo[0]}
             header='Player one'
           />
           <UserDetails
             key="player_two_details"
-            info={this.props.playersInfo[1]}
+            info={this.props.usersInfo[1]}
             header='Player two'
           />
         </div>

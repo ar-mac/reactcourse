@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 import GithubHelpers from '../utils/GithubHelpers';
-import PlayersInfoTable from './PlayersInfoTable.jsx';
+import UsersInfoTable from './UsersInfoTable.jsx';
 import LoadingPrompt from './LoadingPrompt.jsx';
 
 export default class ConfirmBattleContainer extends React.Component {
@@ -13,7 +13,7 @@ export default class ConfirmBattleContainer extends React.Component {
     super(props, context);
 
     this.state = {
-      playersInfo: []
+      usersInfo: []
     };
   }
 
@@ -21,9 +21,9 @@ export default class ConfirmBattleContainer extends React.Component {
     let query = this.props.location.query
     new GithubHelpers({userNames: [query.playerOne, query.playerTwo]})
       .getUsersInfo()
-      .then(playersInfo => {
+      .then(usersInfo => {
         this.setState({
-          playersInfo: playersInfo
+          usersInfo: usersInfo
         })
       })
   }
@@ -32,8 +32,8 @@ export default class ConfirmBattleContainer extends React.Component {
     return (
       <div>
         {
-          this.state.playersInfo.length
-            ? <PlayersInfoTable playersInfo={this.state.playersInfo}/>
+          this.state.usersInfo.length
+            ? <UsersInfoTable usersInfo={this.state.usersInfo}/>
             : <LoadingPrompt />
           }
       </div>
