@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
-import _ from 'lodash';
-import UserDetails from '../components/UserDetails.jsx';
+import UserDetails from './UserDetails.jsx';
+import MainContainer from './MainContainer.jsx';
 
 export default class PlayersInfoTable extends React.Component {
   static contextTypes = {
@@ -21,7 +20,7 @@ export default class PlayersInfoTable extends React.Component {
 
   render() {
     return (
-      <div className="jumbotron col-sm-12 text-center">
+      <MainContainer>
         <h1>{this.props.header}</h1>
         <div className='col-sm-8 col-sm-offset-2'>
 
@@ -39,7 +38,7 @@ export default class PlayersInfoTable extends React.Component {
           />
         </div>
         {this.props.children}
-      </div>
+      </MainContainer>
     )
   }
 }
