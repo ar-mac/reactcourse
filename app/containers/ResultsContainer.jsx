@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
-import GithubHelpers from '../utils/GithubHelpers';
+import GithubHelpers from '../utils/HelpersForGithub';
 import UserDetails from './UserDetails.jsx';
 
 export default class ResultsContainer extends React.Component {
@@ -11,7 +11,8 @@ export default class ResultsContainer extends React.Component {
 
     this.state = {
       isLoading: true,
-      scores: []
+      scores: [],
+      headers: ['', '']
     };
     _.bindAll(this, [
       'setScores'
@@ -24,15 +25,19 @@ export default class ResultsContainer extends React.Component {
       .then(this.setScores)
   }
 
-  results() {
-    return this.props.location.state
-  }
-
   setScores(scores) {
     this.setState({
       scores: scores,
-      isLoading: false
+      isLoading: false,
+      headers: this.getHeaders(scores)
     })
+  }
+
+  getHeaders(scores) {
+    let headers = ['Winner', 'Loser']
+    if (scores[0] < scores[1]) _.reverse(headers)
+    if (scores[0] === scores[1]) headers = ['Draw', 'Draw']
+    return headers
   }
 
   render() {
@@ -45,13 +50,13 @@ export default class ResultsContainer extends React.Component {
             key="player_one_details"
             score={this.state.scores[0]}
             info={usersInfo[0]}
-            header='Player one'
+            header={this.state.headers[0]}
           />
           <UserDetails
             key="player_two_details"
             score={this.state.scores[1]}
             info={usersInfo[1]}
-            header='Player two'
+            header={this.state.headers[1]}
           />
         </div>
       </div>

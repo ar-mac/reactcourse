@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
-import GithubHelpers from '../utils/GithubHelpers';
+import GithubHelpers from '../utils/HelpersForGithub';
 import UsersInfoTable from './UsersInfoTable.jsx';
 import LoadingPrompt from './LoadingPrompt.jsx';
 
