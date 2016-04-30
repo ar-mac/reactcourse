@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 import GithubHelpers from '../utils/HelpersForGithub';
-import UsersInfoTable from './UsersInfoTable.jsx';
-import LoadingPrompt from './LoadingPrompt.jsx';
+import UsersInfoTable from '../components/UsersInfoTable.jsx';
+import LoadingPrompt from '../components/LoadingPrompt.jsx';
+import ButtonsForInitiate from '../components/ButtonsForInitiate.jsx';
 
 export default class ConfirmBattleContainer extends React.Component {
   static ContextTypes = {
@@ -13,29 +14,57 @@ export default class ConfirmBattleContainer extends React.Component {
     super(props, context);
 
     this.state = {
+      isLoading: true,
       usersInfo: []
     };
+
+    _.bindAll(this, [
+      'initiateBattle',
+      'setUsersInfo',
+      'infoTable'
+    ])
   }
 
   componentDidMount() {
     let query = this.props.location.query
     new GithubHelpers({userNames: [query.playerOne, query.playerTwo]})
       .getUsersInfo()
-      .then(usersInfo => {
-        this.setState({
-          usersInfo: usersInfo
-        })
-      })
+      .then(this.setUsersInfo)
+  }
+
+  initiateBattle() {
+    const resultsPath = {
+      pathname: '/results',
+      state: {
+        usersInfo: this.props.usersInfo
+      }
+    };
+
+    this.context.router.push(resultsPath)
+  }
+
+  setUsersInfo() {
+    this.setState({
+      isLoading: false,
+      usersInfo: usersInfo
+    })
+  }
+
+  infoTable() {
+    return (
+      <UsersInfoTable
+        usersInfo={this.state.usersInfo}
+        header="Confirm Players"
+      >
+        <ButtonsForInitiate initiateBattle={this.initiateBattle}/>
+      </UsersInfoTable>
+    )
   }
 
   render() {
     return (
       <div>
-        {
-          this.state.usersInfo.length
-            ? <UsersInfoTable usersInfo={this.state.usersInfo}/>
-            : <LoadingPrompt />
-          }
+        { this.state.isLoading ? <LoadingPrompt /> : this.infoTable() }
       </div>
     )
   }
