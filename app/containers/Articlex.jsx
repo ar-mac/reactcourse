@@ -24,8 +24,7 @@ export default class Articlex extends React.Component {
     super(props, context);
 
     this.state = {
-      idCommentText: '',
-      refCommentText: ''
+      commentText: ''
     };
 
     _.bindAll(this, [
@@ -35,35 +34,28 @@ export default class Articlex extends React.Component {
   }
 
   getCommentById() {
-    this.setState({idCommentText: new_comment.value})
+    this.setState({commentText: new_comment.value})
   }
 
   getCommentByRef() {
-    this.setState({refCommentText: this.refs.new_comment_input.value})
+    this.setState({commentText: this.refs.new_comment_input.value})
   }
 
   render() {
-    const someMarkup = {__html: '<span>Comments</span>'}
     return (
-      <div
-        className="article"
-        key={`article_${this.props.article.id}`}
-      >
-        <div className="article__comments">
-          <p dangerouslysetinnerhtml={someMarkup}/>
-          <label htmlFor="new_comment">Add comment </label>
+      <div className="new_comment__form">
+        <label htmlFor="new_comment">Add comment</label>
 
+        <div>
           <input id="new_comment" ref="new_comment_input"/>
-
-          <div className="article__buttons">
-            <button onClick={this.getCommentById}>Get comment by ID</button>
-            <button onClick={this.getCommentByRef}>Get comment by Ref</button>
-          </div>
-          <div>
-            <div>Captured value by ID: {this.state.idCommentText}</div>
-            <div>Captured value by ref: {this.state.refCommentText}</div>
-          </div>
         </div>
+
+        <div>
+          <button onClick={this.getCommentById}>Add comment by ID</button>
+          <button onClick={this.getCommentByRef}>Add comment by Ref</button>
+        </div>
+
+        <span>Captured comment value: {this.state.commentText}</span>
       </div>
     )
   }
