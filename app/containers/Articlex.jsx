@@ -28,35 +28,39 @@ export default class Articlex extends React.Component {
     };
 
     _.bindAll(this, [
-      'getCommentById',
-      'getCommentByRef'
+      'getCommentText'
     ])
   }
 
-  getCommentById() {
+  getCommentText() {
     this.setState({commentText: new_comment.value})
-  }
-
-  getCommentByRef() {
-    this.setState({commentText: this.refs.new_comment_input.value})
   }
 
   render() {
     return (
       <div className="new_comment__form">
-        <label htmlFor="new_comment">Add comment</label>
+        <input id="new_comment" ref="new_comment_input"/>
 
-        <div>
-          <input id="new_comment" ref="new_comment_input"/>
-        </div>
-
-        <div>
-          <button onClick={this.getCommentById}>Add comment by ID</button>
-          <button onClick={this.getCommentByRef}>Add comment by Ref</button>
-        </div>
+        <button onClick={this.getCommentText}>Get Comment Text</button>
 
         <span>Captured comment value: {this.state.commentText}</span>
       </div>
     )
+  }
+}
+
+import React, { PropTypes } from 'react';
+
+export class Chat extends React.Component {
+  static PropTypes = {
+  };
+
+  render() {
+    return(
+      <div>
+        <MessagesList/>
+        <NewMessage/>
+      </div>
+    );
   }
 }
